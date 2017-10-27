@@ -1,0 +1,3 @@
+rootProject.name = 'mrtdown'
+
+include ':app'
