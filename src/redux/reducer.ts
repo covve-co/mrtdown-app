@@ -5,5 +5,8 @@ import { combineReducers } from "redux";
 const initialState = {
   state: false,
 };
+const reducer = (state = initialState, action: any) => {
+  return state;
+};
 
-export default combineReducers({});
+export default combineReducers({ reducer });
