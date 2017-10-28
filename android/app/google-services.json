@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "192489512884",
+    "firebase_url": "https://mrtdown-68cae.firebaseio.com",
+    "project_id": "mrtdown-68cae",
+    "storage_bucket": "mrtdown-68cae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192489512884:android:6dd786452a37dbc3",
+        "android_client_info": {
+          "package_name": "com.mrtdown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192489512884-mjja2g9t7nf1054ck7iun6follspul6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN9wAfI86ktQv8gMJ-OPcTQKmUQtb8wvs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
