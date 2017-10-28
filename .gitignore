@@ -68,3 +68,5 @@ buck-out/
 !.vscode/extensions.json
 .history
 android/app/google-services.json
+
+ios/Pods/
