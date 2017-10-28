@@ -67,3 +67,4 @@ buck-out/
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+android/app/google-services.json
