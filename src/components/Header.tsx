@@ -7,18 +7,19 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { connect } from "react-redux";
 
 interface IHeader {
-  renderBackButton?: boolean;
-  renderSettingsButton?: boolean;
+  backButton?: boolean;
+  settingsButton?: boolean;
   navigation: any;
 }
 
-export default class Header extends Component<IHeader> {
+class Header extends Component<IHeader> {
 
   private static defaultProps: IHeader = {
-    renderBackButton: false,
-    renderSettingsButton: false,
+    backButton: false,
+    settingsButton: false,
     navigation: null,
   };
 
@@ -30,6 +31,7 @@ export default class Header extends Component<IHeader> {
     return (
       <View style={styles.container}>
         <TouchableOpacity>
+          <Text>{this.props.description}</Text>
           {this.renderBackButton()}
           {this.renderSettingsButton()}
         </TouchableOpacity>
@@ -37,7 +39,7 @@ export default class Header extends Component<IHeader> {
     );
   }
   private renderBackButton() {
-    if (this.props.renderBackButton) {
+    if (this.props.backButton) {
       return (
         <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
           <Text>Go Back</Text>
@@ -46,12 +48,14 @@ export default class Header extends Component<IHeader> {
     }
   }
   private renderSettingsButton() {
-    if (this.props.renderSettingsButton) {
+    if (this.props.settingsButton) {
       return (
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("settings")}>
-          <Text>Go to Settings</Text>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("settings")}>
+            <Text>Go to Settings</Text>
+          </TouchableOpacity>
+        </View>
       );
     }
   }
@@ -64,3 +68,9 @@ const styles = StyleSheet.create({
     height: 80,
   },
 });
+
+const mapStateToProps = (state: any) => {
+  return state;
+};
+
+export default connect(mapStateToProps)(Header);

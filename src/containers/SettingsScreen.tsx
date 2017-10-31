@@ -7,7 +7,7 @@ export default class SettingsScreen extends Component {
   public static navigationOptions = ({ navigation }: any) => ({
     header: (
       <Header
-        renderBackButton={true}
+        backButton={true}
         navigation={navigation}
       />
     ),

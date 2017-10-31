@@ -1,12 +1,13 @@
 import * as React from "react";
 import { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
 import Header from "../components/Header";
-export default class MainScreen extends Component {
+class MainScreen extends Component {
   public static navigationOptions = ({ navigation }: any) => ({
     header: (
       <Header
-        renderSettingsButton={true}
+        settingsButton={true}
         navigation={navigation}
       />),
 
@@ -25,3 +26,5 @@ export default class MainScreen extends Component {
     );
   }
 }
+
+export default MainScreen;

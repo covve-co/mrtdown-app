@@ -7,8 +7,8 @@ export default class ReportingScreen extends Component {
   public static navigationOptions = ({ navigation }: any) => ({
     header: (
       <Header
-        renderBackButton={true}
-        renderSettingsButton={true}
+        backButton={true}
+        settingsButton={true}
         navigation={navigation}
       />
     ),
