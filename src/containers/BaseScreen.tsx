@@ -6,9 +6,8 @@
 
 import * as React from "react";
 import { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Platform } from "react-native";
 import { Provider } from "react-redux";
-import { View } from "react-native";
 import store from "../redux/store";
 import Navigator from "./Navigator";
 
@@ -26,5 +25,6 @@ export default class BaseScreen extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: Platform.OS === "ios" ? 20 : 0,
   },
 });
