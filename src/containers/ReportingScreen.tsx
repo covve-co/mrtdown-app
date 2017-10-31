@@ -10,6 +10,7 @@ export default class ReportingScreen extends Component {
         backButton={true}
         settingsButton={true}
         navigation={navigation}
+        title="Delay?"
       />
     ),
   })

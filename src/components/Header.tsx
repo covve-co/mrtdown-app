@@ -13,6 +13,9 @@ interface IHeader {
   backButton?: boolean;
   settingsButton?: boolean;
   navigation: any;
+  title?: string;
+  description?: string;
+  customDescription?: string;
 }
 
 class Header extends Component<IHeader> {
@@ -21,6 +24,9 @@ class Header extends Component<IHeader> {
     backButton: false,
     settingsButton: false,
     navigation: null,
+    title: "MRTDown?",
+    description: "",
+    customDescription: "",
   };
 
   constructor(props: IHeader) {
@@ -30,30 +36,34 @@ class Header extends Component<IHeader> {
   public render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
-          <Text>{this.props.description}</Text>
-          {this.renderBackButton()}
-          {this.renderSettingsButton()}
-        </TouchableOpacity>
-      </View>
+        <Image source={require("../../assets/app-icon.png")} />
+        <Text style={styles.title}>{this.props.title}</Text>
+        <Text style={styles.description}>
+          {this.props.customDescription || this.props.description}
+        </Text>
+        {this.renderBackButton()}
+        {this.renderSettingsButton()}
+      </View >
     );
   }
+
   private renderBackButton() {
     if (this.props.backButton) {
       return (
         <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-          <Text>Go Back</Text>
+          <Image source={require("../../assets/back-icon.png")} />
         </TouchableOpacity>
       );
     }
   }
+
   private renderSettingsButton() {
     if (this.props.settingsButton) {
       return (
         <View>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("settings")}>
-            <Text>Go to Settings</Text>
+            <Image source={require("../../assets/settings-icon.png")} />
           </TouchableOpacity>
         </View>
       );
@@ -64,8 +74,16 @@ class Header extends Component<IHeader> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
-    height: 80,
+    backgroundColor: "#2D2925",
+    padding: 10,
+  },
+  title: {
+    color: "white",
+    fontWeight: "bold",
+  },
+  description: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

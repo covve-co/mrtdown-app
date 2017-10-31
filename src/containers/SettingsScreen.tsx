@@ -9,6 +9,8 @@ export default class SettingsScreen extends Component {
       <Header
         backButton={true}
         navigation={navigation}
+        title="Setings."
+        customDescription="Push Notifications, more info"
       />
     ),
   })

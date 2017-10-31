@@ -15,9 +15,6 @@ class MainScreen extends Component {
   public render() {
     return (
       <View>
-        <Text>
-          Woah
-        </Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("reporting")}>
           <Text>Go to ReportingScreen</Text>
