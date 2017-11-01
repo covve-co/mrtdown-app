@@ -4,9 +4,10 @@ import { combineReducers } from "redux";
 
 const initialState = {
   state: false,
+  description: "Woah some Text",
 };
 const reducer = (state = initialState, action: any) => {
   return state;
 };
 
-export default combineReducers({ reducer });
+export default reducer;
