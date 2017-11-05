@@ -24,7 +24,7 @@ function fetchLineStatusFailure(error: any) {
 
 function fetchingLineStatus() {
   return {
-    type: Constants.FETCH_LINE_STATUS,
+    type: Constants.FETCHING_LINE_STATUS,
     isFetching: true,
   };
 }
@@ -39,9 +39,40 @@ function fetchLineStatus() {
   };
 }
 
+function fetchTwitterDataSuccess(data: any) {
+  return {
+    type: Constants.FETCH_TWITTER_DATA_SUCCESS,
+    isFetching: false,
+    data,
+  };
+}
+
+function fetchTwitterDataFailure(error: any) {
+  return {
+    type: Constants.FETCH_TWITTER_DATA_FAILURE,
+    isFetching: false,
+    error,
+  };
+}
+
+function fetchingTwitterData() {
+  return {
+    type: Constants.FETCHING_TWITTER_DATA,
+    isFetching: true,
+  };
+}
+
+function fetchTwitterData() {
+  return (dispatch: any) => {
+    dispatch(fetchingTwitterData());
+    axios.get("/tweetlist").then(
+      (response) => dispatch(fetchTwitterDataSuccess(response.data)),
+      (error) => dispatch(fetchTwitterDataFailure(error)),
+    );
+  };
+}
+
 export {
   fetchLineStatus,
-  fetchingLineStatus,
-  fetchLineStatusSuccess,
-  fetchLineStatusFailure,
+  fetchTwitterData,
 };
