@@ -5,7 +5,9 @@ import { combineReducers } from "redux";
 const initialState = {
   state: false,
   description: "Woah some Text",
+  checked: false,
 };
+
 const reducer = (state = initialState, action: any) => {
   return state;
 };

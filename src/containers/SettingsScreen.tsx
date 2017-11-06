@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Header from "../components/Header";
+import { CheckBox } from "react-native-elements";
 
 export default class SettingsScreen extends Component {
   public static navigationOptions = ({ navigation }: any) => ({
@@ -15,10 +16,19 @@ export default class SettingsScreen extends Component {
     ),
   })
   public render() {
+    const lines: string[] = ["All lines", "NSL", "EWL", "CCL", "DTL", "NEL"];
     return (
-      <View>
-        <Text>Settings Screen</Text>
-      </View>
+      lines.map((line, i) => {
+        return (
+          <CheckBox
+            key={i}
+            title={line} checked={false}
+            checkedIcon="dot-circle-o"
+            uncheckedIcon="circle-o"
+            checkedColor="#2D2925"
+            containerStyle={{ backgroundColor: "rgba(0,0,0,0)" }}
+          />
+        );
     );
   }
 }

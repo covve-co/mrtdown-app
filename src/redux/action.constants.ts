@@ -1,2 +1,4 @@
 // Action constants go here
-export { };
+const SAVE_QUESTIONS = "SAVE_QUESTIONS";
+
+export { SAVE_QUESTIONS };

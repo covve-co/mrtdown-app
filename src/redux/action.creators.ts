@@ -1,3 +1,10 @@
 import * as constants from "./action.constants";
 
-export default {};
+function addQuestionsToState(object: any) {
+    return {
+        type: constants.SAVE_QUESTIONS,
+        data: object,
+    };
+}
+
+export default { addQuestionsToState };
