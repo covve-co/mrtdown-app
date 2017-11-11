@@ -21,39 +21,40 @@ const mockData = {
 */
 
 const initialState = {
-  description: "",
+  description: "Some stuff",
   lines: [],
   isFetching: false,
   tweets: [],
+  error: false,
 };
 const fetchLineStatusReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case Constants.FETCHING_LINE_STATUS:
-      return { ...state, isFetching: action.isFetching };
+      return { ...state, isFetching: action.isFetching, error: action.error };
     case Constants.FETCH_LINE_STATUS_SUCCESS:
-      return { ...state, isFetching: action.isFetching, lines: action.data.lines };
+      return {
+        ...state,
+        isFetching: action.isFetching,
+        lines: action.data.lines,
+        error: action.error,
+        description: action.data.description,
+      };
     case Constants.FETCH_LINE_STATUS_FAILURE:
-      return { ...state, isFetching: action.isFetching };
-    default:
-      return state;
-  }
-};
-
-const fetchTwitterDataReducer = (state = initialState, action: any) => {
-  switch (action.type) {
+      return { ...state, isFetching: action.isFetching, error: action.error };
     case Constants.FETCHING_TWITTER_DATA:
-      return { ...state, isFetching: action.isFetching };
+      return { ...state, isFetching: action.isFetching, error: action.error };
     case Constants.FETCH_TWITTER_DATA_SUCCESS:
-      return { ...state, isFetching: action.isFetching, tweets: action.data };
+      return {
+        ...state,
+        isFetching: action.isFetching,
+        tweets: action.data,
+        error: action.error,
+      };
     case Constants.FETCH_TWITTER_DATA_FAILURE:
-      return { ...state, isFetching: action.isFetching };
+      return { ...state, isFetching: action.isFetching, error: action.error };
     default:
       return state;
   }
 };
 
-export default combineReducers(
-  {
-    fetchLineStatusReducer,
-    fetchTwitterDataReducer,
-  });
+export default fetchLineStatusReducer;
