@@ -23,6 +23,7 @@ class MainScreen extends Component {
   public render() {
     return (
       <View>
+        {this.renderError()}
         {this.renderLines()}
         <Button
           title="REPORT A DELAY"
@@ -33,10 +34,16 @@ class MainScreen extends Component {
     );
   }
 
+  public renderError() {
+    if (this.props.error) {
+      return (<Text>Error!!!</Text>);
+    }
+  }
+
   public renderLines() {
     return (
       <View>
-        {this.renderLine({ short_name: "EWL", level: 4 }, 1)}
+        {this.props.lines.map((data, index) => this.renderLine(data, index))}
       </View>
     );
   }
@@ -46,7 +53,7 @@ class MainScreen extends Component {
         key={i}
         title={line.short_name}
         level={line.level}
-        description={"Broken down from Woodlands to Bishan"} />
+        description={line.description} />
     );
   }
 }
