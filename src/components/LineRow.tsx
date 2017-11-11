@@ -6,7 +6,7 @@ interface ILineRowProps {
     title: string;
     level: number;
     description: string;
-    time: string;
+    timestamp: string;
     verified: boolean;
 }
 
@@ -41,7 +41,7 @@ export default class LineRow extends Component<ILineRowProps> {
                     <Text style={styles.level}>
                         {"🔥".repeat(this.props.level)}
                     </Text>
-                    <Text style={styles.time}>{this.props.time}</Text>
+                    <Text style={styles.timestamp}>{this.props.timestamp}</Text>
                     {
                         this.props.verified &&
                         <Text style={styles.verified}>VERIFIED</Text>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginRight: 10,
     },
-    time: {
+    timestamp: {
         paddingTop: 10,
         paddingLeft: 5,
         flex: 1,

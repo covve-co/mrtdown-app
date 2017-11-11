@@ -49,7 +49,7 @@ class MainScreen extends Component {
         title={line.short_name}
         level={line.level}
         description={"Broken down from Woodlands to Bishan"}
-        time={"1h"}
+        timestamp={"1h"}
         verified={false} />
     );
   }
