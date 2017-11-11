@@ -20,10 +20,12 @@ class MainScreen extends Component {
   constructor(props: any) {
     super(props);
     this.props.actions.fetchLineStatus();
+    this.props.actions.fetchTwitterData();
   }
   public render() {
     return (
       <View>
+        {this.renderError()}
         {this.renderLines()}
         <Button
           title="REPORT A DELAY"
@@ -35,43 +37,48 @@ class MainScreen extends Component {
     );
   }
 
+  public renderError() {
+    if (this.props.error) {
+      // TODO: Put modal here to show server error
+      return (<Text>Error!!!</Text>);
+    }
+  }
+
   public renderLines() {
+    function renderLine(line, i) {
+      return (
+        <LineRow
+          verified={line.verified}
+          key={i}
+          title={line.shortName}
+          level={line.level}
+          description={line.description} />
+      );
+    }
     return (
       <View>
-        {this.renderLine({ short_name: "EWL", level: 4 }, 1)}
+        {this.props.lines.map((data, index) => renderLine(data, index))}
       </View>
-    );
-  }
-  public renderLine(line, i) {
-    return (
-      <LineRow
-        key={i}
-        title={line.short_name}
-        level={line.level}
-        description={"Broken down from Woodlands to Bishan"} />
     );
   }
 
   public renderTweets() {
+    function renderTweet(tweet, i) {
+      const date1 = new Date(tweet.timestamp).getHours();
+      const currentDate = new Date().getHours();
+      const diff = currentDate - date1;
+      return (
+        <TweetRow
+          key={i}
+          handle={tweet.author}
+          description={tweet.content}
+          timestamp={diff.toString() + "h"} />
+      );
+    }
     return (
       <View>
-        {
-          this.renderTweet({
-            handle: "Dabbry Dabllen",
-            time: "Time",
-            message: "message",
-          }, 1)
-        }
+        {this.props.tweets.map((data, index) => renderTweet(data, index))}
       </View>
-    );
-  }
-  public renderTweet(tweet, i) {
-    return (
-      <TweetRow
-        key={i}
-        handle={tweet.handle}
-        description={"Sigh why mrt always down..."}
-        timestamp="1h" />
     );
   }
 }
