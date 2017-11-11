@@ -29,7 +29,7 @@ export default class LineRow extends Component<ILineRowProps> {
 
     public render() {
         return (
-            <View style={{ flexDirection: "column" marginTop: 15, marginLeft: 20, marginBottom: 20 }}>
+            <View style={styles.headerContainer}>
                 <View style={{ flexDirection: "row" }}>
                     <Text style={
                         { ...badgeContainer, backgroundColor: this.lineColor }
@@ -65,5 +65,11 @@ const styles = StyleSheet.create({
     description: {
         marginTop: 10,
         color: "#2D2925",
+    },
+    headerContainer: {
+        flexDirection: "column",
+        marginTop: 15,
+        marginLeft: 20,
+        marginBottom: 20,
     },
 });
