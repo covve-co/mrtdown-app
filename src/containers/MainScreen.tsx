@@ -48,7 +48,9 @@ class MainScreen extends Component {
         key={i}
         title={line.short_name}
         level={line.level}
-        description={"Broken down from Woodlands to Bishan"} />
+        description={"Broken down from Woodlands to Bishan"}
+        time={"1h"}
+        verified={false} />
     );
   }
 
