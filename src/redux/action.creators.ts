@@ -72,7 +72,15 @@ function fetchTwitterData() {
   };
 }
 
+function saveQuestions(data: object) {
+  return {
+    type: Constants.FETCH_QUESTIONS,
+    data,
+  };
+}
+
 export {
   fetchLineStatus,
   fetchTwitterData,
+  saveQuestions,
 };

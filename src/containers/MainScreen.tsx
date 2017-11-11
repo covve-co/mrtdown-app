@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Component } from "react";
 import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
-import { View, Text, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Header from "../components/Header";
+import LineRow from "../components/LineRow";
 import * as actionCreators from "../redux/action.creators";
 
 class MainScreen extends Component {
@@ -18,10 +18,12 @@ class MainScreen extends Component {
   })
   constructor(props: any) {
     super(props);
+    this.props.actions.fetchLineStatus();
   }
   public render() {
     return (
       <View>
+        {this.renderLines()}
         <Button
           title="REPORT A DELAY"
           color="#B63414"
@@ -30,11 +32,27 @@ class MainScreen extends Component {
       </View>
     );
   }
+
+  public renderLines() {
+    return (
+      <View>
+        {this.renderLine({ short_name: "EWL", level: 4 }, 1)}
+      </View>
+    );
+  }
+  public renderLine(line, i) {
+    return (
+      <LineRow
+        key={i}
+        title={line.short_name}
+        level={line.level}
+        description={"Broken down from Woodlands to Bishan"} />
+    );
+  }
 }
 
 const styles = StyleSheet.create({
 });
-export default MainScreen;
 const mapStateToProps = (state: any) => {
   return state;
 };

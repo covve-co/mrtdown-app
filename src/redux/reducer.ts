@@ -22,7 +22,7 @@ const mockData = {
 
 const initialState = {
   description: "",
-  lines: {},
+  lines: [],
   isFetching: false,
   tweets: [],
 };
@@ -31,7 +31,7 @@ const fetchLineStatusReducer = (state = initialState, action: any) => {
     case Constants.FETCHING_LINE_STATUS:
       return { ...state, isFetching: action.isFetching };
     case Constants.FETCH_LINE_STATUS_SUCCESS:
-      return { ...state, isFetching: action.isFetching, lines: action.data };
+      return { ...state, isFetching: action.isFetching, lines: action.data.lines };
     case Constants.FETCH_LINE_STATUS_FAILURE:
       return { ...state, isFetching: action.isFetching };
     default:

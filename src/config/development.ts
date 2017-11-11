@@ -1,5 +1,5 @@
 export default {
   api: {
-    baseUrl: "",
+    baseUrl: "https://mrtdown.covve.co/api",
   },
 };

@@ -25,7 +25,7 @@ class Header extends Component<IHeader> {
     settingsButton: false,
     navigation: null,
     title: "MRTDown?",
-    description: "",
+    description: "Sian EWL Down...",
     customDescription: "",
   };
 
@@ -36,13 +36,17 @@ class Header extends Component<IHeader> {
   public render() {
     return (
       <View style={styles.container}>
-        <Image source={require("../../assets/app-icon.png")} />
-        <Text style={styles.title}>{this.props.title}</Text>
-        <Text style={styles.description}>
-          {this.props.customDescription || this.props.description}
-        </Text>
-        {this.renderBackButton()}
-        {this.renderSettingsButton()}
+        <View style={{ flexDirection: "row" }}>
+          {this.renderBackButton()}
+          <View style={{ flexDirection: "column", flex: 8 }}>
+            <Image source={require("../../assets/app-icon.png")} />
+            <Text style={styles.title}>{this.props.title}</Text>
+            <Text style={styles.description}>
+              {this.props.customDescription || this.props.description}
+            </Text>
+          </View>
+          {this.renderSettingsButton()}
+        </View>
       </View >
     );
   }
@@ -60,7 +64,7 @@ class Header extends Component<IHeader> {
   private renderSettingsButton() {
     if (this.props.settingsButton) {
       return (
-        <View>
+        <View style={styles.settings}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("settings")}>
             <Image source={require("../../assets/settings-icon.png")} />
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#2D2925",
     padding: 10,
+    flexDirection: "column",
   },
   title: {
     color: "white",
@@ -84,6 +89,9 @@ const styles = StyleSheet.create({
   description: {
     color: "white",
     fontWeight: "bold",
+  },
+  settings: {
+    flex: 1,
   },
 });
 
