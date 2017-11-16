@@ -1,6 +1,10 @@
 import * as Constants from "./action.constants";
 import _axios from "axios";
 import apiConstants from "../config/index";
+import firebase from "react-native-firebase";
+
+const firebaseapp = firebase.app();
+const firebaseMessaging = firebaseapp.messaging();
 
 const axios = _axios.create({
   baseURL: apiConstants.api.baseUrl,
@@ -29,6 +33,17 @@ function fetchingLineStatus() {
     type: Constants.FETCHING_LINE_STATUS,
     isFetching: true,
     error: false,
+  };
+}
+function toggleSubscription(data: any) {
+  if (data.value === true) {
+    firebaseMessaging.subscribeToTopic(data.topic);
+  } else {
+    firebaseMessaging.unsubscribeFromTopic(data.topic);
+  }
+  return {
+    type: Constants.TOGGLE_SUBSCRIPTION_LINE,
+    data,
   };
 }
 
@@ -88,4 +103,5 @@ export {
   fetchLineStatus,
   fetchTwitterData,
   saveQuestions,
+  toggleSubscription,
 };

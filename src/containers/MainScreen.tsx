@@ -52,7 +52,8 @@ class MainScreen extends Component {
           key={i}
           title={line.shortName}
           level={line.level}
-          description={line.description} />
+          description={line.description}
+          timestamp={"1h"} />
       );
     }
     return (
