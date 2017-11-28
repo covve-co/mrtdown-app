@@ -21,6 +21,7 @@ class MainScreen extends Component {
     super(props);
     this.props.actions.fetchLineStatus();
     this.props.actions.fetchTwitterData();
+    this.props.actions.restoreSubscriptionState();
   }
   public render() {
     return (

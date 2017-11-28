@@ -33,11 +33,18 @@ class SettingsScreen extends Component {
             checked={lineSubscription.subscribed}
             onPress={() => this.props.actions.toggleSubscription(
               {
-                line,
+                subscriptions: {
+                  ...this.props.subscribedLines,
+                  [line]: {
+                    ...this.props.subscribedLines[line],
+                    subscribed: !lineSubscription.subscribed,
+                  },
+                },
                 value: !lineSubscription.subscribed,
                 topic: lineSubscription.topic,
               },
-            )}
+            )
+            }
             checkedIcon="dot-circle-o"
             uncheckedIcon="circle-o"
             checkedColor="#2D2925"

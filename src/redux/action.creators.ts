@@ -2,6 +2,7 @@ import * as Constants from "./action.constants";
 import _axios from "axios";
 import apiConstants from "../config/index";
 import firebase from "react-native-firebase";
+import { AsyncStorage } from "react-native";
 
 const firebaseapp = firebase.app();
 const firebaseMessaging = firebaseapp.messaging();
@@ -36,17 +37,87 @@ function fetchingLineStatus() {
   };
 }
 function toggleSubscription(data: any) {
-  if (data.value === true) {
-    firebaseMessaging.subscribeToTopic(data.topic);
-  } else {
-    firebaseMessaging.unsubscribeFromTopic(data.topic);
-  }
+  return (dispatch: any) => {
+    dispatch(changeSubscriptionState(data));
+    if (data.value === true) {
+      firebaseMessaging.subscribeToTopic(data.topic);
+    } else {
+      firebaseMessaging.unsubscribeFromTopic(data.topic);
+    }
+    dispatch(saveSubscriptionState(data));
+  };
+}
+
+function restoreSubscriptionState() {
+  return (dispatch: any) => {
+    dispatch(restoringSubscription());
+    const lines = AsyncStorage.getItem("lines")
+      .then((data) => {
+        if (data != null) {
+          dispatch(restoredSubscription(data));
+        }
+      })
+      .catch((subErr) => {
+        dispatch(failedToRestoreSubscription());
+      });
+  };
+}
+
+function failedToRestoreSubscription() {
   return {
-    type: Constants.TOGGLE_SUBSCRIPTION_LINE,
+    type: Constants.FAILED_TO_RESTORE_SUBSCRIPTIONS,
+  };
+}
+function restoringSubscription() {
+  return {
+    type: Constants.RESTORING_SUBSCRIPTIONS,
+  };
+}
+
+function restoredSubscription(data: any) {
+  return {
+    type: Constants.RESTORED_SUBSCRIPTIONS,
     data,
   };
 }
 
+function changeSubscriptionState(data: any) {
+  return {
+    type: Constants.CHANGE_SUBSCRIPTION_LINE,
+    data,
+  };
+}
+function saveSubscriptionState(data: any) {
+  return (dispatch: any) => {
+    dispatch(savingSubscriptionState());
+    AsyncStorage.setItem("lines", JSON.stringify(data.subscriptions))
+      .then(() => {
+        dispatch(savedSubscriptionState());
+      },
+    )
+      .catch((err) => {
+        dispatch(failedtosaveSubscriptionState());
+      });
+  };
+}
+
+function savingSubscriptionState() {
+  return {
+    type: Constants.SAVING_SUBSCRIPTION_LINE,
+  };
+}
+
+function savedSubscriptionState() {
+  return {
+    type: Constants.SAVED_SUBSCRIPTION_LINE,
+  };
+}
+
+function failedtosaveSubscriptionState() {
+  return {
+    type: Constants.FAILED_TO_SAVE_SUBSCRIPTION_LINE,
+  };
+}
 function fetchLineStatus() {
   return (dispatch: any) => {
     dispatch(fetchingLineStatus());
@@ -104,4 +175,5 @@ export {
   fetchTwitterData,
   saveQuestions,
   toggleSubscription,
+  restoreSubscriptionState,
 };

@@ -1,5 +1,6 @@
 import * as Constants from "./action.constants";
 import { combineReducers } from "redux";
+import { AsyncStorage } from "react-native";
 // Import reducers
 
 /*
@@ -78,17 +79,15 @@ const fetchLineStatusReducer = (state = initialState, action: any) => {
       };
     case Constants.FETCH_TWITTER_DATA_FAILURE:
       return { ...state, isFetching: action.isFetching, error: action.error };
-    case Constants.TOGGLE_SUBSCRIPTION_LINE:
+    case Constants.CHANGE_SUBSCRIPTION_LINE:
       return {
         ...state,
         subscribedLines: {
-          ...state.subscribedLines,
-          [action.data.line]: {
-            ...state.subscribedLines[action.data.line],
-            subscribed: action.data.value,
-          },
+          ...action.data.subscriptions,
         },
       };
+    case Constants.RESTORED_SUBSCRIPTIONS:
+      return { ...state, subscribedLines: JSON.parse(action.data) };
     default:
       return state;
   }
